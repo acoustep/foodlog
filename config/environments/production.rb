@@ -1,4 +1,5 @@
 Foodlog::Application.configure do
+	config.ember.variant = :production
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -62,6 +63,7 @@ Foodlog::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Ignore bad email addresses and do not raise email delivery errors.
+	config.mailer_sender = "mitch@fastmail.co.uk"
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
