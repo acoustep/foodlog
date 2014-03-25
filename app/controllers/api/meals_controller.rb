@@ -2,11 +2,11 @@ module Api
 	class MealsController < BaseController
 		before_action :auth_only!
 		def index
-			if params[:ids]
-				@meals = Meal.find(params[:ids])
-			else
-				@meals = Meal.all
-			end
+			# if params[:ids]
+			# 	@meals = Meal.find(params[:ids])
+			# else
+			@meals = MealPolicy::Scope.new(current_user, Meal).resolve
+			# end
 			respond_with @meals
 		end
 

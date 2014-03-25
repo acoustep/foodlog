@@ -1,5 +1,5 @@
 Fabricator(:meal) do
-	user_id 1
+	user
 	name 'apple'
 	quantity 1
 	time DateTime.now

@@ -1,9 +1,15 @@
 require 'spec_helper'
 
 describe Api::MealsController do
-	let(:meal) { Fabricate(:meal) }
+	let(:meals) do 
+		x = 1
+		Fabricate.times(3, :meal) do 
+			user_id x
+			x = x + 1
+		end 
+	end
 	let(:user) { Fabricate(:user) }
-	before { meal }
+	before { meals }
 	before { user } # initialize it
 	describe 'GET index' do
 		context 'unauthorized' do
@@ -25,12 +31,17 @@ describe Api::MealsController do
 			it 'returns http 200' do
 				response.response_code.should == 200
 			end
+			it 'should not show other users meals' do
+				parsed_body = JSON.parse(response.body)
+				# number of meals with user_id not one should be zero
+				parsed_body["meals"].select{|key| key["user_id"] != 1 }.count.should == 0
+			end
 		end
 	end
 #
 	describe 'GET show' do
 		context 'unauthorized' do
-			before { get :show, id: meal.id }
+			before { get :show, id: meals.first.id }
 
 			it 'returns http 401' do
 				response.response_code.should == 401
@@ -41,7 +52,7 @@ describe Api::MealsController do
 			# before { get :show, id: 1 }
 			before do
 				user.ensure_authentication_token!
-				get :show, id: meal.id, auth_token: user.authentication_token
+				get :show, id: meals.first.id, auth_token: user.authentication_token
 			end
 			it 'returns http success' do
 				response.should be_success
@@ -60,6 +71,10 @@ describe Api::MealsController do
 
 			it 'returns http 200' do
 				response.response_code.should == 200
+			end
+
+			it "returns 401 on someone else's meal" do
+				pending("needs policy scope and test writing")
 			end
 		end
 	end

@@ -3,6 +3,7 @@ gem "rb-readline", "~> 0.5.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
+gem "pundit", '~>0.2.2'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
