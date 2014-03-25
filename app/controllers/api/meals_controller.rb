@@ -1,5 +1,6 @@
 module Api
 	class MealsController < BaseController
+		before_action :auth_only!
 		def index
 			if params[:ids]
 				@meals = Meal.find(params[:ids])
