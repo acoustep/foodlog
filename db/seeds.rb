@@ -5,13 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create([
-	{ email: 'foo@example.com', password: 'foopassword' },
-	{ email: 'bar@example.com', password: 'barpassword' }
-])
+user = User.create(email: 'foo@example.com', password: 'foopassword')
+user2 = User.create(email: 'bar@example.com', password: 'barpassword')
 
 Post.create([
 	{ title: 'post 1' },
 	{ title: 'post 2' },
 	{ title: 'post 3' }
+])
+Meal.create([
+	{ name: 'apple', user_id: user.id },
+	{ name: 'orange', user_id: user2.id },
+	{ name: 'milk', user_id: user2.id }
 ])

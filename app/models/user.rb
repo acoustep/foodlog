@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 				 :token_authenticatable
 
 	validates :email, presence: true
+	has_many :meals
 end
