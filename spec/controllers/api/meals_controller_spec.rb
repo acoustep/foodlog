@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Api::MealsController do
 	let(:meals) do 
-		x = 1
+		x = 4
 		Fabricate.times(3, :meal) do 
 			user_id x
 			x = x + 1
@@ -34,7 +34,7 @@ describe Api::MealsController do
 			it 'should not show other users meals' do
 				parsed_body = JSON.parse(response.body)
 				# number of meals with user_id not one should be zero
-				parsed_body["meals"].select{|key| key["user_id"] != 1 }.count.should == 0
+				parsed_body["meals"].select{|key| key["user_id"] != 4 }.count.should == 0
 			end
 		end
 	end
@@ -44,6 +44,12 @@ describe Api::MealsController do
 			before { get :show, id: meals.first.id }
 
 			it 'returns http 401' do
+				response.response_code.should == 401
+			end
+
+			it "returns 401 on someone else's meal" do
+				user.ensure_authentication_token!
+				get :show, id: meals.last.id, auth_token: user.authentication_token
 				response.response_code.should == 401
 			end
 		end
@@ -73,9 +79,6 @@ describe Api::MealsController do
 				response.response_code.should == 200
 			end
 
-			it "returns 401 on someone else's meal" do
-				pending("needs policy scope and test writing")
-			end
 		end
 	end
 end

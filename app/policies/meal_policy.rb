@@ -10,4 +10,7 @@ class MealPolicy
 		@user = user
 		@meal = meal
 	end
+	def show?
+		user.id == meal.user_id
+	end
 end

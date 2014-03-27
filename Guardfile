@@ -16,6 +16,10 @@ guard :rspec, all_after_pass: false, cli: '--drb' do
 	 (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" :
 		"spec/requests/#{m[1].singularize}_pages_spec.rb")]
 	end
+	watch(%r{^app/controllers/api/(.+)_controller\.rb$}) do |m|
+		["spec/routing/api/#{m[1]}_routing_spec.rb",
+	 "spec/controllers/api/#{m[1]}_controller_spec.rb"]
+	end
 	watch(%r{^app/views/(.+)/}) do |m|
 		(m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" :
 		 "spec/requests/#{m[1].singularize}_pages_spec.rb")

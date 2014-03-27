@@ -12,6 +12,7 @@ module Api
 
 		def show
 			@meal = Meal.find(params[:id])
+			authorize @meal
 			respond_with @meal
 		end
 	end
