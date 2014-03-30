@@ -58,9 +58,6 @@ module Api
 			User.serialize_from_cookie id, identifier
 		end
 
-		def missing_params
-			render json: {}, status: 400
-		end
 
 		def invalid_credentials
 			render json: {}, status: 401

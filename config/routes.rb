@@ -7,7 +7,7 @@ Foodlog::Application.routes.draw do
 		end
 		resources :posts, only: [:index, :show]
 		resources :users, only: [:index, :show]
-		resources :meals, only: [:index, :show]
+		resources :meals
 	end
 
 	root to: 'home#index'

@@ -17,5 +17,10 @@ module Api
 		def auth_only!
 			render json: {}, status: 401 unless current_user
 		end
+
+		private
+		def missing_params
+			render json: {}, status: 400
+		end
 	end
 end

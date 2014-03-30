@@ -81,4 +81,13 @@ describe Api::MealsController do
 
 		end
 	end
+
+	describe 'POST create' do
+		context 'no param' do
+			# post :create not working
+			before { post :index }
+
+			it_behaves_like 'http code', 401 # DRYed up
+		end
+	end
 end
