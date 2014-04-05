@@ -3,6 +3,8 @@ render 'auth'
 nav
   link-to 'posts.index'
     | Posts list
+  link-to 'meals.index'
+    | Meals list
   link-to 'users.index'
     | Users list
 

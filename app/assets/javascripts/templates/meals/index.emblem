@@ -1,0 +1,4 @@
+ul: each controller
+  li: link-to 'meals.show' this
+    = name
+

@@ -1,0 +1,6 @@
+h1
+  = name
+
+link-to 'meals.index'
+  | Back to meals list
+
