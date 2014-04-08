@@ -1,0 +1,15 @@
+h1 New
+form submit="submitForm"
+  Ember.TextField valueBinding="name"
+  br
+  Ember.TextField valueBinding="quantity"
+  br
+  Ember.TextField valueBinding="time"
+  br
+  button type="submit" Save 
+  link-to 'meals.index'
+    button Cancel
+  br
+link-to 'meals.index'
+  | Back to meals list
+

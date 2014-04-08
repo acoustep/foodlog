@@ -1,1 +1,4 @@
+link-to 'meals.new'
+  | Create
+  br
 outlet

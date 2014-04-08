@@ -1,0 +1,15 @@
+h1
+  | Edit 
+  = name
+form submit="update"
+  Ember.TextField valueBinding="name"
+  br
+  Ember.TextField valueBinding="quantity"
+  br
+  Ember.TextField valueBinding="time"
+  br
+  button type="submit" Save 
+  button{action "cancel"} Cancel
+  br
+link-to 'meals.index'
+  | Back to meals list

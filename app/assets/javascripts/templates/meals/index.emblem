@@ -1,4 +1,7 @@
 ul: each controller
-  li: link-to 'meals.show' this
-    = name
-
+  li 
+    link-to 'meals.show' this
+      = name
+    |  -  
+    link-to 'meals.edit' this
+      | Edit

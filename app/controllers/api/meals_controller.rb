@@ -7,7 +7,7 @@ module Api
 			# end
 			@meal = Meal.new
 			@meal.name = params[:name]
-			@meal.quantity = params[:quantity]
+			@meal.quantity = params[:quantity].to_i
 			@meal.time = params[:time]
 			@meal.user_id = current_user.id
 			# render json: {'test' => 'test'}, status: 201
